@@ -132,5 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-LOGIN_REDIRECT_URL = 'blog:post_list'
+LOGIN_REDIRECT_URL = 'blog:index'
 LOGIN_URL = 'users:login'

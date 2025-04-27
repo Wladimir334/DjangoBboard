@@ -1,18 +1,35 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
-from .forms import PostForm
+from django.core.paginator import Paginator
+from .forms import PostForms
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def index(request):
-    posts = Post.objects.all()
-    context = {'title': "Главная страница", "posts":posts}
+    # (select * from blog_post order by created_at DESC) DESC - это минус, те выводятся сначала последние посты
+    # получение всех постов, отсортированных по дате публикации
+    # (select * from blog_post order by created_at DESC)
+    posts = Post.objects.all().order_by('-created_at')
+    count_posts = Post.objects.count()  # count_posts = len(posts)
+    # показываем по 3 потса на стрнице
+    paginator = Paginator(posts, 3)
+    # получаем номер стр из URL
+    page_number = request.GET.get('page')
+    # получаем обхекты для текущей стр
+    page_obj = paginator.get_page(page_number)
+    context = {"title": "Главная страница",
+               "page_obj": page_obj,
+               "count_posts": count_posts
+               }
     return render(request, template_name='blog/index.html', context=context)
 
 def about(request):
-    context = {'title': "О сайте"}
+    count_posts = Post.objects.count()
+    context = {'title': "О сайте", "count_posts": count_posts}
     return render(request, template_name='blog/about.html', context=context)
 
+@login_required
 def add_post(request):
     if request.method == "GET":
         post_form = PostForm()
@@ -35,7 +52,7 @@ def read_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     context = {"title": "Информация о посте", "post": post}
     return render(request, template_name="blog/post_detail.html", context=context)
-
+@login_required
 def update_post(request, pk):
     # post = Post.objects.get(pk=pk)
     post = get_object_or_404(Post, pk=pk)
@@ -57,7 +74,7 @@ def update_post(request, pk):
 
         })
         return render(request, template_name="blog/post_edit.html", context={"form": post_form})
-
+@login_required
 def delete_post(request, pk):
     # post = Post.objects.get(pk=pk)
     post = get_object_or_404(Post, pk=pk)

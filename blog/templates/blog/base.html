@@ -43,7 +43,7 @@
             {% endif %}
             {% if user.is_authenticated %}
             <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></li>
-            <li><a class="dropdown-item" href="{% url 'users:detail' pk=user.pk %}">{{ user.username }}</a></li>
+            <li><a class="dropdown-item" href="{% url 'users:profile' pk=user.pk %}">{{ user.username }}</a></li>
             {% endif %}
           </ul>
         </li>

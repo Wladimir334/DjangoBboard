@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
+from BboardSite.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth import update_session_auth_hash
 # from BboardSite.settings import LOGIN_REDIRECT_URL
 from .forms import NewRegistrationForm
