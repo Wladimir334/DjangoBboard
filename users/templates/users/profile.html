@@ -11,6 +11,9 @@
 <div>Телефон - {{ user.phone }}</div>
 <hr>
 <div>Дата регистрации - {{ user.date_joined|date:'d-m-Y H:i'}}</div>
-<a href="{% url users:'change_password' %}"></a>
-   <button type="submit"></button>
+
+<a href="{% url users:'change_password' %}">
+   <button type="submit">Сменить пароль</button>
+</a>
+
 {% endblock content %}

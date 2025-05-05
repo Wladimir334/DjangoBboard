@@ -8,5 +8,4 @@ urlpatterns = [
     path('logout/', log_out, name='logout'),
     path('profile/<int:pk>/', user_detail, name='profile'),
     path('change_password/', change_password, name='change_password'),
-
 ]

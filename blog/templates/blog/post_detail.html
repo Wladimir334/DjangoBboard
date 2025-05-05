@@ -30,6 +30,14 @@
 {% endif %}
 </div>
 
-
+{% if user.is_superuser %}
+        <div class="btn-actions">
+            <div class="btn-del-post">
+                <a href="{% url 'blog:delete_post' pk=post.id %}">
+                    <button type="button">Удалить</button>
+                </a>
+            </div>
+        </div>
+{% endif %}
 
 {% endblock content %}

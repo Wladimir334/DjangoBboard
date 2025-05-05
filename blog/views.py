@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from django.core.paginator import Paginator
-from .forms import PostForms
+from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -32,19 +32,19 @@ def about(request):
 @login_required
 def add_post(request):
     if request.method == "GET":
-        post_form = PostForm()
+        post_form = PostForm(author=request.user)
         context = {"title": "Добавить пост","form": post_form}
         return render(request, template_name='blog/post_add.html', context=context)
 
     if request.method == "POST":
-        post_form = PostForm(data=request.POST, files=request.FILES)
+        post_form = PostForm(data=request.POST, files=request.FILES, author=request.user)
         if post_form.is_valid():
-            post = Post()
-            post.title = post_form.cleaned_data['title']
-            post.text = post_form.cleaned_data['text']
-            post.author = post_form.cleaned_data['author']
-            post.image = post_form.cleaned_data['image']
-            post.save()
+            # post = Post()
+            # post.title = post_form.cleaned_data['title']
+            # post.text = post_form.cleaned_data['text']
+            # post.author = post_form.cleaned_data['author']
+            # post.image = post_form.cleaned_data['image']
+            post_form.save()
             return index(request)
 
 def read_post(request, slug):

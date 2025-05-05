@@ -1,15 +1,15 @@
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from BboardSite.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth import update_session_auth_hash
-# from BboardSite.settings import LOGIN_REDIRECT_URL
-from .forms import NewRegistrationForm
+from BboardSite.settings import LOGIN_REDIRECT_URL
+from .forms import NewRegistrationForm, CustomPasswordChangeForm
                     # UserRegistrationForm, ChangePasswordForm)
 
 User = get_user_model()
@@ -26,7 +26,6 @@ def register(request):
     form = NewRegistrationForm()
     context = {"title": "Регистрация пользователя", "register_form": form}
     return render(request, template_name="users/registration.html", context=context)
-
 
 def log_in(request):
     # создание формы аутентификации
@@ -63,60 +62,22 @@ def user_detail(request, pk):
     context = {'user': user, 'title': 'Информация о профиле'}
     return render(request, template_name='users/profile.html', context=context)
 
-
-# @login_required
-# def change_password(request):
-#     if request.method == "POST":
-#         is_valid = True
-#         form = CustomPasswordChangeForm(request.POST)
-#
-#         if form.is_valid():
-#             old_password = form.cleaned_data['old_password']
-#             new_password = form.cleaned_data['new_password_1']
-#
-#             if request.user.check_password(old_password):
-#                 if form.cleaned_data['new_password_1'] != form.cleaned_data['new_password_2']:
-#                     form.add_error('new_password_1', 'Пароли не совпадают')
-#                     is_valid = False
-#
-#                 if not is_valid:
-#                     return render(request, template_name='users/change_password.html', context={'form': form})
-#
-#                 request.user.set_password(new_password)
-#                 request.user.save()
-#                 update_session_auth_hash(request, request.user)
-#
-#             else:
-#                 form.add_error('old_password', 'Старый пароль неверный')
-#                 render(request, template_name='users/change_password.html', context={'form': form})
-#
-#         context = {'form': form}
-#         return render(request, template_name='users/change_password.html', context=context)
-#
-#     else:
-#         form = CustomPasswordChangeForm()
-#         context = {'title': 'Сменить пароль', 'form': form}
-#         return render(request, template_name='users/change_password.html', context=context)
 @login_required
 def change_password(request):
     if request.method == 'POST':
-        form = ChangePasswordForm(request.POST)
+        form = CustomPasswordChangeForm(request.POST)
         if form.is_valid():
-            old_password = form.cleaned_data['old_password']
-            new_password = form.cleaned_data['new_password']
-
-            # Проверка правильности старого пароля
+            old_password = form.cleaned_data["old_password"]
             if not request.user.check_password(old_password):
-                form.add_error('old_password', 'Старый пароль неверен.')
+                messages.error(request, "Старый пароль не верный")
             else:
-                # Изменение пароля
-                request.user.set_password(new_password)
-                request.user.save()
-                update_session_auth_hash(request, request.user)  # Сохраняем сессию пользователя
-                messages.success(request, 'Пароль успешно изменен.')
-                return redirect('some_view')  # Замените на нужный вам URL
-
+                user = form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, "Ваш пароль успешно изменен")
+        else:
+            messages.error(request, "Пожалуйста, исправьте ошибки")
     else:
-        form = ChangePasswordForm()
+        form = CustomPasswordChangeForm(request.user)
 
-    return render(request, 'users/change_password.html', {'form': form})
+    return render(request, template_name="users/change_password.html", context={"form": form})
+
