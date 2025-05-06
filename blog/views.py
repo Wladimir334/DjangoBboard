@@ -57,7 +57,7 @@ def update_post(request, pk):
     # post = Post.objects.get(pk=pk)
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        post_form = PostForm(data=request.POST, files=request.FILES)
+        post_form = PostForm(data=request.POST, files=request.FILES, author=request.user)
         if post_form.is_valid():
             post.title = post_form.cleaned_data['title']
             post.text = post_form.cleaned_data['text']

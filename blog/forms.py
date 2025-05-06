@@ -12,14 +12,14 @@ class PostForm(forms.ModelForm):
     # дополняем конструктор родительского класса
     def __init__ (self, *args, **kwargs):
         # получаем author из именованных аргументов (его передали во views)
-        author = kwargs.pop('author')
+        author = kwargs.pop('author', None)
         # вызываем конмтруктор родительского
         super().__init__(*args, **kwargs)
         # устанавливаем начальное значение поля author
         self.fields['author'].initial = author
         # отключаем видимость этого поля в форме
         self.fields['author'].disable = True
-        self.fields['author'].widjet = forms.HiddenInput()
+        self.fields['author'].widget = forms.HiddenInput()
     class Meta:
         model = Post
         fields = ('title', 'text', 'image', 'author')

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'blog/base.html' %}
 
-</body>
-</html>
+{% block content %}
+<h2> Пользователь {{ new_user.username }} успешно зарегистрирован! </h2>
+
+<p>Имя - {{ new_user.first_name }}</p>
+<p>Фамилия - {{ new_user.last_name }}</p>
+<p>Email - {{ new_user.email }}</p>
+<p>Телефон - {{ new_user.phone }}</p>
+
+{% endblock content %}
