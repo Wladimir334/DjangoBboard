@@ -5,6 +5,8 @@
 
 <img src="{% static 'img/photo_1.jpg' %}" width="300px" height="auto">
 
+<img src="{% static 'img/404.jpg' %}" width="150px" height="auto">
+
 
 <h1>Главная страница</h1>
 <div class="post-list">
@@ -32,6 +34,7 @@
         </div>
     {% endfor %}
 </div>
+
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
