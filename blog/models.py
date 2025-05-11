@@ -8,6 +8,7 @@ from django.urls import reverse
 class Post(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст поста")
+    # price = models.CharField(max_length=20, verbose_name="Цена")
     created_at = models.DateTimeField(default=timezone.now, verbose_name="Дата создания", editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор")
     image = models.ImageField(upload_to='post/', null=True, blank=True, verbose_name="Изображение")

@@ -27,5 +27,6 @@ class PostForm(forms.ModelForm):
         labels = {
             'title': 'Загловок',
             'text': 'Текст объявления',
-            'image': 'Изображение'
+            'image': 'Изображение',
+            # 'price': 'Цена'
         }

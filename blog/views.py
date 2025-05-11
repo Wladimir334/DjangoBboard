@@ -63,6 +63,7 @@ def update_post(request, pk):
             post.text = post_form.cleaned_data['text']
             post.author = post_form.cleaned_data['author']
             post.image = post_form.cleaned_data['image']
+            # post.price = post_form.cleaned_data['price']
             post.save()
             return redirect('blog:read_post', slug=post.slug)
     else:
@@ -70,6 +71,7 @@ def update_post(request, pk):
             "title": post.title,
             "author": post.author,
             "text": post.text,
+            "price": post.price,
             "image": post.image
 
         })

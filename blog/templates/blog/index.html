@@ -5,9 +5,6 @@
 
 <img src="{% static 'img/photo_1.jpg' %}" width="300px" height="auto">
 
-<img src="{% static 'img/404.jpg' %}" width="150px" height="auto">
-
-
 <h1>Главная страница</h1>
 <div class="post-list">
     {% for post in page_obj %}
@@ -28,6 +25,9 @@
             <div class="post-text">
                 {{ post.text }}
             </div>
+<!--            <div class="post-price">-->
+<!--                {{ post.price }}-->
+<!--            </div>-->
             <div class="post-created_at">
                 {{ post.created_at }}
             </div>
@@ -38,17 +38,21 @@
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo;Первая</a>
+            <a href="?page=1">&laquo;&laquo;Первая</a>
             <a href="?page={{ page_obj.previous_page_number }}">&laquo;Предыдущая</a>
         {% endif %}
+
         <span class="current">
             Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
         </span>
+
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
-            <a href="?page={{ page_obj.paginator.num_page }}">Последняя&raquo;</a>
+            <a href="?page={{ page_obj.paginator.num_page }}">Последняя&raquo</a>
         {% endif %}
     </span>
 </div>
+
+<h3>Сегодня {% now "jS F Y" %}</h3>
 
 {% endblock content %}
