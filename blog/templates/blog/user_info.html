@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h2>Информация о пользователе {{ user.username }}</h2>
+<hr>
+<div>Логин - {{ user.username }}</div>
+<div>Имя - {{ user.first_name }}</div>
+<div>Фамилия - {{ user.last_name }}</div>
+<div>Эл.почта - {{ user.email }}</div>
+<div>Телефон - {{ user.phone }}</div>
+<hr>
+<div>Дата регистрации - {{ user.date_joined|date:'d-m-Y H:i'}}</div>
+
+
+{% endblock content %}

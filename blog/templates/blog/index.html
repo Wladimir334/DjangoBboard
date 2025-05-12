@@ -3,7 +3,17 @@
 {% load static %}
 {% block content %}
 
+<div class="search" style="display: flex;
+    justify-content: end;
+    margin-right: 50px;">
+    <form action="" method="get">
+        <input type="search" name="query">
+        <button type="submit">Поиск</button>
+    </form>
+</div>
+
 <img src="{% static 'img/photo_1.jpg' %}" width="300px" height="auto">
+
 
 <h1>Главная страница</h1>
 <div class="post-list">
@@ -17,7 +27,9 @@
                 {% endif %}
             </div>
             <div class="post-author">
-                {{ post.author }}
+                <a href="{% url 'blog:user_posts' user_id=post.author.pk %}">
+                    {{ post.author }}
+                </a>
             </div>
             <div class="post-title">
                 <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>

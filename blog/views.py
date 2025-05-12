@@ -3,6 +3,7 @@ from .models import Post
 from django.core.paginator import Paginator
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -71,7 +72,7 @@ def update_post(request, pk):
             "title": post.title,
             "author": post.author,
             "text": post.text,
-            "price": post.price,
+            # "price": post.price,
             "image": post.image
 
         })
@@ -86,6 +87,18 @@ def delete_post(request, pk):
         return redirect('blog:index')
     return render(request, template_name="blog/post_delete.html", context=context)
 
+def user_posts(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    # posts = user.posts.all()
+    posts = Post.objects.filter(author=user).select_related('author')
+    context = {"user": user, "posts": posts}
+    return render(request, template_name='blog/user_posts.html', context=context)
+
+def user_info(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    posts = Post.objects.filter(author=user).select_related('author')
+    context = {"user": user, "posts":posts}
+    return render(request, template_name='blog/user_info.html', context=context)
 def page_not_found(request, exception):
     return render(request, template_name="blog/404.html", context={'title': '404'})
 

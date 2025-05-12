@@ -1,9 +1,11 @@
 
 
 body {
-   	   background-image: url('blog/static/img/photo_1.jpg');
-       background-size: auto;
-   }
+    background-image: url('static/img/spa.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    size: 100%;
+}
 
 .base-body {
     background-image: url('img/photo_1.jpg');
@@ -34,6 +36,11 @@ body {
     background-color: #91d2c8;
 }
 
+.search {
+    display: flex;
+    justify-content: end;
+    margin-right: 50px;
+}
 
 
 
