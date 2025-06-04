@@ -1,14 +1,12 @@
 
 
 body {
-    background-image: url('static/img/spa.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    size: 100%;
+    background-image: url('{% static "img/spa.jpg"%}');
+
 }
 
 .base-body {
-    background-image: url('img/photo_1.jpg');
+    background-image: url('{% static "img/spa.jpg"%}');
     background-size: auto;
 }
 
@@ -39,9 +37,23 @@ body {
 .search {
     display: flex;
     justify-content: end;
-    margin-right: 50px;
+    margin-right: -9px;
 }
 
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+    margin-top: 22px;
+    font-family: ui-rounded;
+    background-color: #a0e9fb;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    background-color: #cbbfe1;
+}
 
 
 

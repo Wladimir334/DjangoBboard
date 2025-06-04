@@ -7,15 +7,15 @@
 <div class="search">
     <form action="{% url 'blog:search_post' %}" method="get" style="display:flex; justify-content: end; margin-right: 50px;">
         <input type="search" name="query">
-        <button type="submit">Поиск</button>
+        <button type="submit" style="border-radius: 20px">Поиск</button>
     </form>
 </div>
 
-<div>
+<div class="filters">
     <form action="{% url 'blog:filter_post' %}" method="get" style="display: flex; justify-content: flex-end; margin-right: 40px;
-    margin-top: 25px;">
+    margin-top: 25px; border-radius: 50px">
           {{ filter_form.as_p }}
-          <button type="submit">Фильтровать</button>
+          <button type="submit" style="border-radius: 20px">Фильтровать</button>
     </form>
 </div>
 
@@ -72,7 +72,13 @@
             {% endif %}
         </span>
     </div>
-<h3>Сегодня {% now "jS F Y" %}</h3>
+<br>
+<br>
+<br>
+<br>
+<div class="date">
+    <h3>Сегодня {% now "jS F Y" %}</h3>
+</div>
 
 {% endif %}
 
