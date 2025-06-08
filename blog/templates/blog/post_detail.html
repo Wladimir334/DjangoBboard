@@ -3,49 +3,53 @@
 
 {% block content %}
 
-<h3>Информация об объявлении № {{ post.pk }}</h3>
-<hr>
-{% if user.is_authenticated %}
-<a href="{% url 'blog:user_info' user_id=post.author.pk %}">
-    {{ post.author }}
-</a>
-{% else %}
-    {{ post.author }}
-{% endif %}
-
-<h4>{{ post.title }}</h4>
-{% if post.image %}
-<p><img src="{{ post.image.url }}" width="300px" height="auto"></p>
-{% else %}
-<p><img src="{% static 'img/no_photo.jpg' %}" width="150px" height="150px"></p>
-{% endif %}
-
-{{ post.text }}
-<p><i>{{ post.created_at }}</i></p>
-
-{% if user == post.author %}
-<div class="btn-actions">
-    <div class="btn-edit-post">
-        <a href="{% url 'blog:update_post' pk=post.id %}">
-            <button type="button">Редактировать</button>
+<div class="post-detail" >
+    <div class="post-info">
+        <h3>Информация об объявлении № {{ post.pk }}</h3>
+        <hr>
+        {% if user.is_authenticated %}
+        <a href="{% url 'blog:user_info' user_id=post.author.pk %}">
+            {{ post.author }}
         </a>
-    </div>
-    <div class="btn-del-post">
-        <a href="{% url 'blog:delete_post' pk=post.id %}">
-            <button type="button">Удалить</button>
-        </a>
-    </div>
-{% endif %}
-</div>
+        {% else %}
+            {{ post.author }}
+        {% endif %}
 
-{% if user.is_superuser %}
+        <h4>{{ post.title }}</h4>
+        {% if post.image %}
+        <p><img src="{{ post.image.url }}" width="300px" height="auto"></p>
+        {% else %}
+        <p><img src="{% static 'img/no_photo.jpg' %}" width="150px" height="150px"></p>
+        {% endif %}
+
+        {{ post.text }}
+        <p><i>{{ post.created_at }}</i></p>
+
+        {% if user == post.author %}
         <div class="btn-actions">
+            <div class="btn-edit-post">
+                <a href="{% url 'blog:update_post' pk=post.id %}">
+                    <button type="button">Редактировать</button>
+                </a>
+            </div>
             <div class="btn-del-post">
                 <a href="{% url 'blog:delete_post' pk=post.id %}">
                     <button type="button">Удалить</button>
                 </a>
             </div>
+        {% endif %}
         </div>
-{% endif %}
+
+        {% if user.is_superuser %}
+                <div class="btn-actions">
+                    <div class="btn-del-post">
+                        <a href="{% url 'blog:delete_post' pk=post.id %}">
+                            <button type="button">Удалить</button>
+                        </a>
+                    </div>
+                </div>
+        {% endif %}
+    </div>
+</div>
 
 {% endblock content %}

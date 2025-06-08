@@ -1,13 +1,17 @@
 
 
 body {
-    background-image: url("../img/spa.jpg");
+    background-image: url("../img/spa-2.jpg");
+    background-size: contain;
+}
 
+.spa-3 {
+    display: flex;
+    justify-content: center;
 }
 
 .base-body {
-    background-image: url('{% static "img/spa.jpg"%}');
-    background-size: auto;
+
 }
 
 .post-item {
@@ -23,6 +27,9 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
+    box-shadow: 0px 20px 20px 4px;
+    margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -43,17 +50,40 @@ body {
 .filters {
     display: flex;
     justify-content: flex-end;
-    margin-right: 40px;
-    margin-top: 22px;
+    font-family: cursive;
     font-family: ui-rounded;
-    background-color: #a0e9fb;
+    ;
 }
 
 .date {
     display: flex;
     justify-content: center;
     background-color: #cbbfe1;
+    font-family: cursive;
+    border-radius: 20px;
+    box-shadow: 0px 20px 20px 4px;
+    margin-right: 500px;
+    margin-left: 500px;
 }
 
+.pagination {
+    margin-left: 30px;
+    color: aquamarine;
+}
 
+.bg-light {
+    background-color: #ad76d9 !important;
+}
 
+.post-detail {
+    margin-left: 100px;
+    margin-top: 30px;
+    background-color: beige;
+    width: 800px;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.post-info {
+
+}

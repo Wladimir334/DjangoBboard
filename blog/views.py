@@ -18,7 +18,7 @@ def index(request):
     posts = Post.objects.all().order_by('-created_at')
     count_posts = Post.objects.count()  # count_posts = len(posts)
     # показываем по 3 потса на стрнице
-    paginator = Paginator(posts, 3)
+    paginator = Paginator(posts, 4)
     # получаем номер стр из URL
     page_number = request.GET.get('page')
     # получаем обхекты для текущей стр

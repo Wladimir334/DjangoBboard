@@ -5,25 +5,36 @@
 {% block content %}
 
 <div class="search">
-    <form action="{% url 'blog:search_post' %}" method="get" style="display:flex; justify-content: end; margin-right: 50px;">
+    <form action="{% url 'blog:search_post' %}" method="get" style="display:flex;
+        justify-content: end; margin-right: 50px;">
         <input type="search" name="query">
         <button type="submit" style="border-radius: 20px">Поиск</button>
     </form>
 </div>
 
 <div class="filters">
-    <form action="{% url 'blog:filter_post' %}" method="get" style="display: flex; justify-content: flex-end; margin-right: 40px;
-    margin-top: 25px; border-radius: 50px">
+    <form action="{% url 'blog:filter_post' %}" method="get" style="display: flex;
+    justify-content: flex-end; margin-right: 42px;
+    margin-top: 25px; border-radius: 50px;
+    margin-left: 500px; border-radius: 20px;
+    background-color: #b389e5;
+    box-shadow: 0px 20px 20px 4px;">
           {{ filter_form.as_p }}
           <button type="submit" style="border-radius: 20px">Фильтровать</button>
     </form>
 </div>
 
-<h1>Главная страница</h1>
+<h1><div style="display: flex;
+                justify-content: center;
+                color: #d30dea;
+                font-family: cursive;">МИР МАССАЖА</div></h1>
+
 {% if page_obj|length == 0 %}
 <h2>По вашему запросу ничего не найдено</h2>
 {% else %}
-    <img src="{% static 'img/photo_1.jpg' %}" width="300px" height="auto">
+    <div class="spa-3">
+        <img src="{% static 'img/spa-3.jpg' %}" width="800px" height="auto">
+    </div>
     <div class="post-list">
         {% for post in page_obj %}
             <div class="post-item">
@@ -34,21 +45,21 @@
                         <img src="{% static 'img/no_photo.jpg'%}" width="150px" height="auto">
                     {% endif %}
                 </div>
-                <div class="post-author">
+                <div class="post-author" style="margin-left: 10px; font-family: cursive;">
                     <a href="{% url 'blog:user_posts' user_id=post.author.pk %}">
                         {{ post.author }}
                     </a>
                 </div>
-                <div class="post-title">
+                <div class="post-title" style="margin-left: 10px; font-family: cursive;">
                     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                 </div>
-                <div class="post-text">
+                <div class="post-text" style="margin-left: 10px; font-family: cursive;">
                     {{ post.text }}
                 </div>
     <!--            <div class="post-price">-->
     <!--                {{ post.price }}-->
     <!--            </div>-->
-                <div class="post-created_at">
+                <div class="post-created_at" style="margin-left: 10px; font-family: cursive;">
                     {{ post.created_at }}
                 </div>
             </div>
