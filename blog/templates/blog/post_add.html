@@ -1,12 +1,20 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h2>Добавить новое объявление</h2>
 
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button   type="submit">Добавить объявление</button>
-</form>
+<div style="display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 10px;
+  background-color: antiquewhite;">
+    <h2>Добавить новое объявление</h2>
 
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button   type="submit">Добавить объявление</button>
+    </form>
+</div>
 {% endblock content %}

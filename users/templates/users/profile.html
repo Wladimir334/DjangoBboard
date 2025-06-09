@@ -2,18 +2,26 @@
 
 {% block content %}
 
-<h2>Информация о пользователе {{ user.username }}</h2>
-<hr>
-<div>Логин - {{ user.username }}</div>
-<div>Имя - {{ user.first_name }}</div>
-<div>Фамилия - {{ user.last_name }}</div>
-<div>Эл.почта - {{ user.email }}</div>
-<div>Телефон - {{ user.phone }}</div>
-<hr>
-<div>Дата регистрации - {{ user.date_joined|date:'d-m-Y H:i'}}</div>
+<div style="display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 10px;
+  background-color: antiquewhite;">
 
-<a href="{% url 'users:change_password' %}">
-   <button type="submit">Сменить пароль</button>
-</a>
+   <h2>Информация о пользователе {{ user.username }}</h2>
+   <hr>
+   <div>Логин - {{ user.username }}</div>
+   <div>Имя - {{ user.first_name }}</div>
+   <div>Фамилия - {{ user.last_name }}</div>
+   <div>Эл.почта - {{ user.email }}</div>
+   <div>Телефон - {{ user.phone }}</div>
+   <hr>
+   <div>Дата регистрации - {{ user.date_joined|date:'d-m-Y H:i'}}</div>
 
+   <a href="{% url 'users:change_password' %}">
+      <button type="submit">Сменить пароль</button>
+   </a>
+</div>
 {% endblock content %}

@@ -1,11 +1,20 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h2> Пользователь {{ new_user.username }} успешно зарегистрирован! </h2>
 
-<p>Имя - {{ new_user.first_name }}</p>
-<p>Фамилия - {{ new_user.last_name }}</p>
-<p>Email - {{ new_user.email }}</p>
-<p>Телефон - {{ new_user.phone }}</p>
+<div style="display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 10px;
+  background-color: antiquewhite;">
+    <h2> Пользователь {{ new_user.username }} успешно зарегистрирован! </h2>
+
+    <p>Имя - {{ new_user.first_name }}</p>
+    <p>Фамилия - {{ new_user.last_name }}</p>
+    <p>Email - {{ new_user.email }}</p>
+    <p>Телефон - {{ new_user.phone }}</p>
+</div>
 
 {% endblock content %}

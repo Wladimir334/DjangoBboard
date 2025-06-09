@@ -1,8 +1,17 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h1>О сайте</h1>
-<h3>
-    На сайте объявлений <span>{{ count_posts }}</span> постов.
-</h3>
+
+<div style="display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 10px;
+  background-color: antiquewhite;">
+    <h1>О сайте</h1>
+    <h3>
+        <div style="margin-top: 40px">На сайте объявлений <span>{{ count_posts }}</span> постов.</div>
+    </h3>
+</div>
 {% endblock content %}

@@ -2,11 +2,19 @@
 
 {% block content %}
 
-<h2>Пожалуйста, войдите на сайт</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Войти</button>
-</form>
+<div style="display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 10px;
+  background-color: antiquewhite;">
 
+    <h2>Пожалуйста, войдите на сайт</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+</div>
 {% endblock content %}
