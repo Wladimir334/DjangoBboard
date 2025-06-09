@@ -52,12 +52,13 @@
   </div>
 </nav>
 
-{% if messages %}
-    {% for message in messages %}
-      <div>{{ message }}</div>
-    {% endfor %}
-{% endif %}
-
+<div style="color: antiquewhite">
+  {% if messages %}
+      {% for message in messages %}
+        <div>{{ message }}</div>
+      {% endfor %}
+  {% endif %}
+</div>
 {% block content %}
 <div class="base-body">
 
@@ -67,6 +68,6 @@
 </body>
 
 <footer>
-  <div style="color: #edf340">&copy;Bboard</div>
+  <div style="color: #edf340; margin-left: 20px; margin-bottom: 20px">&copy;Bboard</div>
 </footer>
 </html>
