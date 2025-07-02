@@ -22,8 +22,6 @@ class RegistrationForm(UserCreationForm):
                                 error_messages={
                                     "requared": _("Пожалуйста подтвердите пароль")
                                 })
-
-
     class Meta:
         model = User
         fields = ("username", "first_name",

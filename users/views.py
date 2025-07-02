@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 from BboardSite.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth import update_session_auth_hash
 from BboardSite.settings import LOGIN_REDIRECT_URL
-from .forms import NewRegistrationForm, CustomPasswordChangeForm
+from .forms import (NewRegistrationForm,
+                    CustomPasswordChangeForm)
                     # UserRegistrationForm, ChangePasswordForm)
 
 User = get_user_model()
